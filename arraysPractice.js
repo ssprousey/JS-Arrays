@@ -57,9 +57,15 @@ function reversedLooper (letters) {
 
 var nums = [1,2,3,6,22,98,45,23,22,12];
 //Write a function named evenFinder that is given nums as it's only argument and removes all values that aren't even from the given array.
-
-  //Code Here
-
+var list = [ ];
+function evenFinder () {
+  for (var i = 0; i < nums.length; i++) {
+    if (nums[i] % 2 === 0) {
+      list.push (nums[i]);
+    }
+  }
+return list;
+}
 
 //Next problem
 
@@ -142,7 +148,13 @@ var numbers = [5, '9', 16, 19, '25', '34', 48];
 //Write a function called addTen that is given 'numbers' as it's only argument and returns a new
 //array after adding ten to each item in numbers. *Verify your answer is correct. --> [15, 19, 26, 29, 35, 44, 58]
 
-  //Code Here
+var newNums = []
+function addTen () {
+  for (var i = 0; i < numbers.length; i++) {
+    numbers[i] += 10;
+  }
+}
+return addTen;
 
 
 
@@ -230,7 +242,7 @@ of Data is to have an Array full of objects. */
 
 //Create an empty array called users.
 
-  //Code Here
+var users = []
 
 /*Now add three user objects to your users array. Each user object should contain the
 following properties. name, email, password, username.*/
