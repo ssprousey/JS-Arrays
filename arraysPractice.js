@@ -58,13 +58,14 @@ function reversedLooper (letters) {
 var nums = [1,2,3,6,22,98,45,23,22,12];
 //Write a function named evenFinder that is given nums as it's only argument and removes all values that aren't even from the given array.
 var list = [ ];
-function evenFinder () {
+function evenFinder (nums) {
   for (var i = 0; i < nums.length; i++) {
-    if (nums[i] % 2 === 0) {
-      list.push (nums[i]);
+    if (nums[i] % 2 !== 0) {
+      nums.splice(i, 1);
+      i--;
     }
-  }
-return list;
+  };
+  return nums;
 }
 
 //Next problem
@@ -73,10 +74,25 @@ return list;
 var numbersArray = [1,2,34,54,55,34,32,11,19,17,54,66,13];
 //Write a function called divider that is given one argument, numbersArray.
 //Have divider return an Array with the first item in the array being the evens array (all the even values from numbersArray) and the second item in the Array being the odds array (all the odd values from numbersArray).
+var evens = [];
+var odds = [];
 
+function divider(nums, evens, odds){
+  var divArray = [];
+  evens = [];
+  odds = [];
+  for (var i = 0; i < nums.length; i++) {
+    if (nums[i] % 2 === 0){
+      evens.push(nums[i]);
+    }
+    else if ((nums[i] + 1) % 2 === 0) {
+      odds.push(nums[i]);
+    }
+  };
+  divArray.push(evens, odds);
+  return divArray;
+}
 
-
-  //Code Here
 
 
 //Next Problem
@@ -90,9 +106,14 @@ var getRandomArbitrary = function() {
 
 // Your job is to write a function named finder that will get a random number (by invoking getRandomArbitrary), then loop through the array (that will be passed in as a parameter) to see if that random number is in the array. If it is, return true, if it's not, return false
 
-  //Code Here
+function finder(numbers) {
+  var found = false;
+  if (numbers.indexOf(getRandomArbitrary()) !== -1) {
+    found = true;
+  }
+  return found;
+}
 
-  //Code Here
 
 
 //Next problem
@@ -102,7 +123,13 @@ var getRandomArbitrary = function() {
 var str = 'this is my sentence';
 //Write a function called reverse that takes a given str as it's only argument and returns that string after it's been reversed
 
-  //Code Here
+function reverse(str) {
+ var reverseStr = ""
+ for (var i = str.length - 1; i >= 0; i--) {
+   reverseStr += str.charAt(i);
+ };
+ return reverseStr;
+}
 
 
 //Next Problem
@@ -131,13 +158,31 @@ var myGroceryList = ['chips', 'pizza', 'hotpockets', 'MtnDew', 'corndogs'];
 
 
 
-//Next Problem
+function removeItem(myGroceryList, removeItem) {
+  var i = myGroceryList.indexOf(removeItem);
+  if (i !== -1) {
+    myGroceryList.splice(i, 1);
+  }
+  return myGroceryList;
+}
+
+function addItem(myGroceryList, addItem) {
+  myGroceryList.push(addItem);
+  return myGroceryList;
+}
+
 
 
 
 //Write a function called maker that creates an array, fills that array with numbers from 1 to 215, then returns the array.
 
-  //Code Here
+function maker() {
+  var stuff = [];
+  for (var i = 1; i < 216; i++) {
+    stuff.push(i);
+  };
+  return stuff;
+}
 
 
 
@@ -148,13 +193,14 @@ var numbers = [5, '9', 16, 19, '25', '34', 48];
 //Write a function called addTen that is given 'numbers' as it's only argument and returns a new
 //array after adding ten to each item in numbers. *Verify your answer is correct. --> [15, 19, 26, 29, 35, 44, 58]
 
-var newNums = []
-function addTen () {
+
+function addTen(numbers) {
   for (var i = 0; i < numbers.length; i++) {
-    numbers[i] += 10;
-  }
+    numbers[i] = Number(numbers[i]) + 10;
+  };
+  return numbers;
 }
-return addTen;
+
 
 
 
@@ -175,7 +221,15 @@ for(var i = 0; i < num2; i++){
 //Above is some code that adds a random number of values to both arr1 and arr2.
 //Write a function called 'longer' that is given arr1 and arr2 as it's only arguments. Return the array which is longest.
 
-  //Code Here
+function longer(arr1, arr2) {
+  if(arr1.length > arr2.length) {
+    return arr1;
+  }
+  else {
+    return arr2;
+  }
+}
+
 
 
 /*As a continuation of the previous problem, write another function called 'both'.
@@ -184,7 +238,18 @@ for(var i = 0; i < num2; i++){
   Example: var arr1 = [1,2,3,4]; var arr2 = [2,4,5,6]; newArray // [2,4]
 */
 
-  //Code Here
+function both(arr1, arr2) {
+  var bothArray = []
+  for (var i = 0; i < arr1.length; i++) {
+    for (var j = 0; j < arr2.length; j++) {
+      if (arr1[i] === arr2[j]) {
+        bothArray.push(arr1[i]);
+      };
+    };
+  };
+
+  return bothArray;
+}
 
 
 
@@ -224,12 +289,21 @@ var colt = {
 array with those four objects. After that console.log the length of the Array and make
 sure that it's equal to 4. */
 
-  //Code Here
+devMountainEmployees.push(tyler);
+devMountainEmployees.push(cahlan);
+devMountainEmployees.push(ryan);
+devMountainEmployees.push(colt);
 
 /*Now let's say Cahlan has a mental breakdown and has to take a leave of absence to 'find himself'.
 Loop through your devMountainEmployees until you find cahlan, then remove him from the array.*/
 
-  //Code Here
+
+for (var i = 0; i < devMountainEmployees.length; i++) {
+  if (devMountainEmployees[i].name === 'Cahlan') {
+    devMountainEmployees.splice(i, 1);
+    i--;
+  }
+};
 
 
 
@@ -265,6 +339,11 @@ and those objects contain properties about the specific person you follow.*/
 objects until you find Tyler's account (use tylermcginnis33@gmail.com to find him).
 Once you find the particular index he's located in, delete him from the array.*/
 
-  //Code Here
+for (var i = 0; i < users.length; i++) {
+  if(users[i].email === 'tylermcginnis33@gmail.com') {
+    users.splice(i, 1);
+    break;
+  }
+};
 
 //The activity we just did is very much how data works in 'the real world'.
